@@ -1,0 +1,9 @@
+sudo: required
+services:
+  -docker
+
+before_install: #before our tests are run
+  - docker build -t m4r14r1os/course-docker-react -f Dockerfile.dev .  #In Dockerfile.dev the tests are generated.
+
+script:
+  - docker run -e CI=true m4r14r1os/course-docker-react npm run test -- --coverage
